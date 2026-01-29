@@ -2,7 +2,14 @@
 MERGE INTO users_apprentice (ID, COACHID, NAME, OTJWEEKLY_RATE, COURSE_START_DATE, COURSEID) KEY(ID) VALUES (1, 1, 'Yara Soler', 6, DATE '2025-01-01', 1);
 MERGE INTO users_apprentice (ID, COACHID, NAME, OTJWEEKLY_RATE, COURSE_START_DATE, COURSEID) KEY(ID) VALUES (2, 1, 'Alex Data', 6, DATE '2025-02-01', 1);
 
-MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (1, 'Conferences');
+-- categories: exact list requested (only these)
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (1, 'Workshops & Training');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (2, 'Online Learning');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (3, 'Mentoring & Shadowing');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (4, 'Practical/Workplace Learning');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (5, 'Group Learning');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (6, 'Learning Support');
+MERGE INTO category (ID, CATEGORY) KEY(ID) VALUES (7, 'OTHER');
 
 MERGE INTO users_coach (ID, NAME) KEY(ID) VALUES (1, 'Sam Osborne');
 
