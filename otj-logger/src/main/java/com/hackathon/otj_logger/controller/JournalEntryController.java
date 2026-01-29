@@ -36,6 +36,8 @@ public class JournalEntryController {
 
     @PostMapping
     public @Nonnull ResponseEntity<JournalEntry> create(@RequestBody JournalEntry entry) {
+        // Ensure ID is null for new entries to avoid constraint violations
+        entry.setId(null);
         JournalEntry saved = repository.save(entry);
         return ResponseEntity.created(URI.create("/entries/" + saved.getId())).body(saved);
     }

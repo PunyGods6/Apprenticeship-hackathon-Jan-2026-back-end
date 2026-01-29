@@ -1,5 +1,6 @@
 package com.hackathon.otj_logger.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.*;
@@ -10,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JournalEntry {
 
     @Id
@@ -44,10 +46,30 @@ public class JournalEntry {
     @Column(name = "CategoryID")
     private Long categoryId;
 
+    // Additional fields for frontend compatibility
+    @Column(name = "date")
+    private java.time.LocalDate date;
+
+    @Column(name = "startTime")
+    private String startTime;
+
+    @Column(name = "endTime")
+    private String endTime;
+
+    @Column(name = "isOffTheJob")
+    private Boolean isOffTheJob;
+
+    @Column(name = "totalHours")
+    private Double totalHours;
+
+    @Column(name = "category")
+    private String category;
+
     @PrePersist
     void onCreate() {
         if (this.creation == null) this.creation = LocalDateTime.now();
         if (this.lastUpdated == null) this.lastUpdated = this.creation;
+        if (this.date == null && this.creation != null) this.date = this.creation.toLocalDate();
     }
 
     @PreUpdate
